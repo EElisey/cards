@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { Box, Grid, Button, Typography } from "@mui/material";
 import { useCards } from "@/hooks";
 import { CardItem, Footer, Header, SkeletonCard } from "@/view";
@@ -13,23 +13,13 @@ const placeholderCard: Card = {
 };
 
 const CardsPage = () => {
-  const { data, isLoading, isError, refetch, isFetching } = useCards();
+  const { data,  isError, refetch, isFetching } = useCards();
 
   const handleRefresh =  () => {
      refetch();
   };
 
-  if (isError) {
-    return (
-      <Box sx={{ textAlign: "center" }}>
-        <Typography variant="h6" color="error">
-          Ошибка загрузки
-        </Typography>
-        <Button onClick={handleRefresh}>Повторить</Button>
-      </Box>
-    );
-  }
-
+  
   const cardsToDisplay = useMemo(() => {
     let sortedCards = [...(data || [])];
 
@@ -51,6 +41,18 @@ const CardsPage = () => {
 
     return sortedCards;
   }, [data]);
+
+
+  if (isError) {
+    return (
+      <Box sx={{ textAlign: "center" }}>
+        <Typography variant="h6" color="error">
+          Ошибка загрузки
+        </Typography>
+        <Button onClick={handleRefresh}>Повторить</Button>
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
