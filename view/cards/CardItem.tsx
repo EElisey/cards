@@ -22,7 +22,7 @@ export const CardItem = ({ card }: CardItemProps) => {
         {card.title || "Без заголовка"}
       </Typography>
       <Typography variant="body2" sx={{ flexGrow: 1 }} noWrap>
-        {card.description}
+        {card.text}
       </Typography>
     </Paper>
   );

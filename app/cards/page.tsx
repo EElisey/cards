@@ -9,7 +9,7 @@ import { Card } from "@/types";
 const placeholderCard: Card = {
   id: "placeholder",
   title: "Заглушка",
-  description: "Это заглушка карточки",
+  text: "Это заглушка карточки",
 };
 
 const CardsPage = () => {
@@ -41,7 +41,7 @@ const CardsPage = () => {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
 
-        return (a.description?.length || 0) - (b.description?.length || 0);
+        return (a.text?.length || 0) - (b.text?.length || 0);
       })
       .slice(0, 7); 
 
